@@ -124,9 +124,9 @@ turbo_multiplier = 11.0
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │           Verdant™ Static Site (GitHub Pages)               │
-│  ├─ Landing Page (Hero, Features, Pricing)                 │
-│  ├─ Analytics Dashboard (Chart.js visualizations)          │
-│  ├─ Corporate Insights (Auto-generated content)            │
+│  ├─ Landing Page (Hero, Features, Pricing)                  │
+│  ├─ Analytics Dashboard (Chart.js visualizations)           │
+│  ├─ Corporate Insights (Auto-generated content)             │
 │  └─ Documentation                                           │
 └─────────────────────────────────────────────────────────────┘
                           ▲
@@ -134,11 +134,11 @@ turbo_multiplier = 11.0
                           │
 ┌─────────────────────────────────────────────────────────────┐
 │         Verdant Engine (Rust - Windows Service)             │
-│  ├─ GitHub API Client (octocrab)                           │
-│  ├─ Content Generator (Corporate cat content)              │
-│  ├─ Commit Scheduler (Aggressive random intervals)         │
-│  ├─ Timezone Optimizer (Global distribution)               │
-│  └─ Windows Service Wrapper                                │
+│  ├─ GitHub API Client (octocrab)                            │
+│  ├─ Content Generator (Corporate cat content)               │
+│  ├─ Commit Scheduler (Aggressive random intervals)          │
+│  ├─ Timezone Optimizer (Global distribution)                │
+│  └─ Windows Service Wrapper                                 │
 └─────────────────────────────────────────────────────────────┘
                           │
                           ▼
@@ -363,14 +363,16 @@ This project is satire. While it does actually work as a GitHub contribution opt
 2. An over-engineered solution to a non-problem
 3. A demonstration of professional software development applied to something ridiculous
 4. Entertainment
+5. Meow meow meow meow meow 
 
-Use responsibly. Your GitHub contribution graph is not a measure of your worth as a developer.
+Use responsibly. 
+## **Your GitHub contribution graph is not a measure of your worth as a developer.**
 
 ---
 
 ## Credits
 
-**Created by:** mesopera
+**Created by:** mesopera, mau
 
 **Technologies:**
 - Rust (Backend)
