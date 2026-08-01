@@ -1,0 +1,45 @@
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Config files (contain tokens)
+config.toml
+*.toml
+!config.example.toml
+!Cargo.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# Temp files
+temp/
+tmp/
+*.tmp
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Generated content (will be committed by the engine)
+# frontend/insights/*.html
+# frontend/data/metrics.json

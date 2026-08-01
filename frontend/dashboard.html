@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Verdant™</title>
+    <meta name="description" content="Real-time purr-formance analytics and metrics">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 4L4 10L16 16L28 10L16 4Z" fill="#10b981" opacity="0.8"/>
+                        <path d="M4 16L16 22L28 16" stroke="#10b981" stroke-width="2" fill="none"/>
+                        <path d="M4 22L16 28L28 22" stroke="#10b981" stroke-width="2" fill="none"/>
+                        <circle cx="16" cy="10" r="1.5" fill="#059669"/>
+                        <circle cx="20" cy="12" r="1" fill="#059669"/>
+                        <circle cx="12" cy="12" r="1" fill="#059669"/>
+                    </svg>
+                    <span class="logo-text">Verdant<sup>™</sup></span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="dashboard.html" class="btn-secondary">Analytics</a>
+                    <a href="insights.html">Live Insights</a>
+                    <a href="docs.html">Documentation</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <h1>Purr-formance Analytics Dashboard</h1>
+            <p class="subtitle">Real-time feline productivity intelligence and metrics</p>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Key Metrics Cards -->
+            <div class="metrics-cards">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Purr-formance Score</span>
+                        <span class="metric-icon">📊</span>
+                    </div>
+                    <div class="metric-value" id="purrformance-score">87.3</div>
+                    <div class="metric-change positive">↑ 3.2% from last week</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Box Occupancy Rate</span>
+                        <span class="metric-icon">📦</span>
+                    </div>
+                    <div class="metric-value" id="box-occupancy">73%</div>
+                    <div class="metric-change positive">↑ 5.7% from last week</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Zoomie Frequency Index</span>
+                        <span class="metric-icon">⚡</span>
+                    </div>
+                    <div class="metric-value" id="zoomie-frequency">42</div>
+                    <div class="metric-change neutral">→ Stable</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Treat Conversion Rate</span>
+                        <span class="metric-icon">🎯</span>
+                    </div>
+                    <div class="metric-value" id="treat-rate">3.2</div>
+                    <div class="metric-change positive">↑ 2.1% from last week</div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <!-- Purr-formance Over Time -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Purr-formance Trend</h3>
+                        <p class="chart-description">Weekly purr-formance score analysis</p>
+                    </div>
+                    <canvas id="purrformanceChart"></canvas>
+                </div>
+
+                <!-- Box Occupancy Distribution -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Box Occupancy by Hour</h3>
+                        <p class="chart-description">Optimal productivity windows</p>
+                    </div>
+                    <canvas id="boxOccupancyChart"></canvas>
+                </div>
+
+                <!-- Nap Correlation -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Nap Duration vs Code Quality</h3>
+                        <p class="chart-description">Correlation analysis</p>
+                    </div>
+                    <canvas id="napCorrelationChart"></canvas>
+                </div>
+
+                <!-- Territorial Coverage Heatmap -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Territorial Coverage</h3>
+                        <p class="chart-description">Contribution distribution by time</p>
+                    </div>
+                    <canvas id="territorialChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Additional Insights -->
+            <div class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-icon">✅</div>
+                        <div class="insight-content">
+                            <h4>Strategic Nap Scheduling</h4>
+                            <p>Current nap patterns show optimal correlation with code quality metrics. Continue current protocols for maximum purr-formance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">📈</div>
+                        <div class="insight-content">
+                            <h4>Box Occupancy Trending Up</h4>
+                            <p>15% increase in territorial coverage this month. Consider expanding box allocation budget to maintain momentum.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">🎯</div>
+                        <div class="insight-content">
+                            <h4>Treat Efficiency Optimized</h4>
+                            <p>Treat-to-commit ratio at all-time high. Strategic allocation framework delivering measurable ROI.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">⚡</div>
+                        <div class="insight-content">
+                            <h4>Zoomie Patterns Stable</h4>
+                            <p>Burst activity detection shows healthy engagement levels. No optimization required at this time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-text">Verdant<sup>™</sup></span>
+                    </div>
+                    <p class="footer-tagline">
+                        Enterprise Feline Productivity<br>Optimization Suite
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="dashboard.html">Analytics</a></li>
+                        <li><a href="insights.html">Live Insights</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="https://github.com/mesopera/verdant">GitHub</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Whitepaper</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="mailto:hello@verdant.feline.corp">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Verdant™. All rights reserved. A Feline Productivity Initiative.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

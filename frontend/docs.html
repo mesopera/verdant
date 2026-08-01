@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Verdant™</title>
+    <meta name="description" content="Implementation guide and technical documentation">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .docs-main { padding: var(--spacing-3xl) 0; max-width: 800px; margin: 0 auto; }
+        .docs-main h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--spacing-lg); color: var(--color-dark); }
+        .docs-main h2 { font-size: 1.75rem; font-weight: 600; margin: var(--spacing-2xl) 0 var(--spacing-md) 0; color: var(--color-dark); }
+        .docs-main h3 { font-size: 1.25rem; font-weight: 600; margin: var(--spacing-lg) 0 var(--spacing-sm) 0; color: var(--color-gray-800); }
+        .docs-main p { line-height: 1.8; color: var(--color-gray-700); margin-bottom: var(--spacing-md); }
+        .docs-main code { background: var(--color-gray-200); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.875rem; }
+        .docs-main pre { background: var(--color-gray-900); color: var(--color-gray-100); padding: var(--spacing-lg); border-radius: var(--radius-md); overflow-x: auto; margin: var(--spacing-md) 0; }
+        .docs-main pre code { background: none; padding: 0; }
+        .docs-main ul, .docs-main ol { margin-left: var(--spacing-lg); margin-bottom: var(--spacing-md); }
+        .docs-main li { line-height: 1.8; color: var(--color-gray-700); margin-bottom: var(--spacing-xs); }
+        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: var(--spacing-lg); border-radius: var(--radius-md); margin: var(--spacing-lg) 0; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 4L4 10L16 16L28 10L16 4Z" fill="#10b981" opacity="0.8"/>
+                        <path d="M4 16L16 22L28 16" stroke="#10b981" stroke-width="2" fill="none"/>
+                        <path d="M4 22L16 28L28 22" stroke="#10b981" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span class="logo-text">Verdant<sup>™</sup></span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="dashboard.html">Analytics</a>
+                    <a href="insights.html">Live Insights</a>
+                    <a href="docs.html" class="btn-secondary">Documentation</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="docs-main">
+        <div class="container">
+            <h1>Verdant™ Documentation</h1>
+            <p>Enterprise Feline Productivity Optimization Suite - Implementation Guide</p>
+
+            <h2>Quick Start</h2>
+            <p>Get started with Verdant™ in three simple steps:</p>
+            <ol>
+                <li><strong>Fork the Repository:</strong> Visit <a href="https://github.com/mesopera/verdant">github.com/mesopera/verdant</a> and click "Fork"</li>
+                <li><strong>Download the Engine:</strong> Get the latest <code>verdant-engine.exe</code> from the releases page</li>
+                <li><strong>Configure & Run:</strong> Follow the setup instructions below</li>
+            </ol>
+
+            <h2>Installation</h2>
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Windows 10 or later (Windows service support)</li>
+                <li>GitHub account with repository access</li>
+                <li>Rust toolchain (for building from source)</li>
+            </ul>
+
+            <h3>Setup Process</h3>
+            <p><strong>Step 1: Authentication</strong></p>
+            <p>Run the authentication wizard to configure GitHub access:</p>
+            <pre><code>verdant-engine.exe auth</code></pre>
+            <p>This will guide you through creating a GitHub Personal Access Token and detecting your forked repository.</p>
+
+            <p><strong>Step 2: Configuration (Optional)</strong></p>
+            <p>Review and adjust settings:</p>
+            <pre><code>verdant-engine.exe config</code></pre>
+            <p>Configuration file location: <code>%LOCALAPPDATA%\Verdant\config.toml</code></p>
+
+            <p><strong>Step 3: Install as Windows Service</strong></p>
+            <pre><code>verdant-engine.exe install
+verdant-engine.exe start</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> The engine requires full repository access to create commits. Ensure your GitHub token has the <code>repo</code> scope enabled.
+            </div>
+
+            <h2>Configuration Options</h2>
+            <p>Edit <code>config.toml</code> to customize behavior:</p>
+            <pre><code>[schedule]
+mode = "aggressive_random"     # gentle, balanced, aggressive, aggressive_random, turbo
+min_interval_minutes = 30      # Minimum time between commits
+max_interval_minutes = 180     # Maximum time between commits
+timezone_optimization = true   # Spread commits across timezones
+turbo_multiplier = 1.0         # Set to 11.0 for maximum intensity 🚀
+
+[content]
+commit_message_style = "absurd_professional"  # normal, professional, absurd_professional
+
+[service]
+auto_start = true              # Start on Windows boot
+log_level = "info"             # debug, info, warn, error</code></pre>
+
+            <h2>Advanced Features</h2>
+            <h3>Turbo Mode</h3>
+            <p>Turn it up to 11 by setting <code>turbo_multiplier = 11.0</code> in your configuration. This dramatically increases commit frequency for maximum graph optimization.</p>
+
+            <h3>Timezone Optimization</h3>
+            <p>The engine intelligently distributes commits across multiple timezones to simulate a global development team, creating a more organic-looking contribution pattern.</p>
+
+            <h3>Content Generation</h3>
+            <p>The engine automatically generates various types of corporate content:</p>
+            <ul>
+                <li>Quarterly Business Reviews</li>
+                <li>Executive Memorandums</li>
+                <li>Research Papers with Citations</li>
+                <li>Case Studies</li>
+                <li>Press Releases</li>
+                <li>Meeting Minutes</li>
+                <li>Metrics Dashboard Updates</li>
+            </ul>
+
+            <h2>Monitoring</h2>
+            <p>Track your optimization progress:</p>
+            <ul>
+                <li><strong>Live Insights:</strong> Visit <a href="insights.html">insights.html</a> to see all generated content</li>
+                <li><strong>Analytics Dashboard:</strong> View metrics at <a href="dashboard.html">dashboard.html</a></li>
+                <li><strong>GitHub Graph:</strong> Check your contribution graph on your profile</li>
+            </ul>
+
+            <h2>Troubleshooting</h2>
+            <h3>Service Won't Start</h3>
+            <ul>
+                <li>Ensure you've run <code>verdant-engine.exe auth</code> first</li>
+                <li>Check that your GitHub token is valid</li>
+                <li>Verify the repository exists and is accessible</li>
+            </ul>
+
+            <h3>No Commits Being Created</h3>
+            <ul>
+                <li>Check Windows Event Viewer for error logs</li>
+                <li>Run in foreground mode for debugging: <code>verdant-engine.exe run</code></li>
+                <li>Verify your token has <code>repo</code> scope</li>
+            </ul>
+
+            <h2>Building from Source</h2>
+            <pre><code># Clone the repository
+git clone https://github.com/mesopera/verdant.git
+cd verdant/verdant-engine
+
+# Build release binary
+cargo build --release
+
+# Binary will be at: target/release/verdant-engine.exe</code></pre>
+
+            <h2>Architecture</h2>
+            <p>Verdant™ consists of two main components:</p>
+            <ul>
+                <li><strong>Rust Engine:</strong> Background service that handles GitHub API integration, content generation, and commit scheduling</li>
+                <li><strong>Static Frontend:</strong> GitHub Pages site displaying analytics, insights, and documentation</li>
+            </ul>
+
+            <h2>Support</h2>
+            <p>For issues, questions, or contributions:</p>
+            <ul>
+                <li>GitHub: <a href="https://github.com/mesopera/verdant">mesopera/verdant</a></li>
+                <li>Email: <a href="mailto:hello@verdant.feline.corp">hello@verdant.feline.corp</a></li>
+            </ul>
+
+            <h2>License</h2>
+            <p>Verdant™ is open source software licensed under the MIT License.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Verdant™. All rights reserved. A Feline Productivity Initiative.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

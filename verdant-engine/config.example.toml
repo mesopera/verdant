@@ -1,0 +1,52 @@
+# Verdant™ Configuration Example
+# Copy this file to %LOCALAPPDATA%\Verdant\config.toml and edit
+
+[github]
+# Your GitHub Personal Access Token (requires 'repo' scope)
+# Create at: https://github.com/settings/tokens/new
+token = ""
+
+# Your GitHub username
+username = ""
+
+# Repository name (auto-detected, usually 'verdant')
+repo_name = "verdant"
+
+[schedule]
+# Schedule mode options:
+#   - gentle: 1 commit per day
+#   - balanced: 2-3 commits per day
+#   - aggressive: 4-8 commits per day
+#   - aggressive_random: 4-8 commits at random intervals (RECOMMENDED)
+#   - turbo: user-defined intensity via turbo_multiplier
+mode = "aggressive_random"
+
+# Minimum interval between commits (in minutes)
+min_interval_minutes = 30
+
+# Maximum interval between commits (in minutes)
+max_interval_minutes = 180
+
+# Enable timezone optimization (spreads commits across UTC-8, UTC-5, UTC+0, UTC+8)
+timezone_optimization = true
+
+# Turbo multiplier (set to 11.0 for "turn it up to 11" mode)
+# This divides the interval by the multiplier (higher = more frequent commits)
+turbo_multiplier = 1.0
+
+[content]
+# Commit message style:
+#   - normal: "Update metrics"
+#   - professional: "Update Q3 feline productivity metrics"
+#   - absurd_professional: "Synergize cross-functional purr-formance KPIs for stakeholder alignment"
+commit_message_style = "absurd_professional"
+
+# Content types to generate (["all"] or specific types)
+content_types = ["all"]
+
+[service]
+# Auto-start service on Windows boot
+auto_start = true
+
+# Logging level: debug, info, warn, error
+log_level = "info"

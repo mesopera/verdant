@@ -1,0 +1,54 @@
+[package]
+name = "verdant-engine"
+version = "0.1.0"
+edition = "2021"
+authors = ["Verdant Contributors"]
+description = "Enterprise Feline Productivity Optimization Suite"
+license = "MIT"
+
+[dependencies]
+# GitHub API
+octocrab = "0.38"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Configuration
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Random generation
+rand = "0.8"
+
+# Scheduling
+chrono = "0.4"
+chrono-tz = "0.9"
+
+# Windows service
+windows-service = "0.7"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+anyhow = "1"
+thiserror = "1"
+
+# Template engine
+tera = "1"
+
+# Git operations
+git2 = "0.19"
+
+# Encryption (for token storage on Windows)
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.58", features = [
+    "Win32_Security_Cryptography",
+    "Win32_Foundation",
+    "Win32_System_Memory"
+] }
