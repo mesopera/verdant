@@ -6,21 +6,21 @@
 }
 
 :root {
-    /* Colors - Professional with subtle green theme */
+    /* Colors - Dark theme with vibrant green accents */
     --color-primary: #10b981;
     --color-primary-dark: #059669;
     --color-primary-light: #34d399;
-    --color-secondary: #6366f1;
-    --color-dark: #0f172a;
-    --color-gray-900: #1e293b;
-    --color-gray-800: #334155;
-    --color-gray-700: #475569;
-    --color-gray-600: #64748b;
-    --color-gray-500: #94a3b8;
-    --color-gray-400: #cbd5e1;
-    --color-gray-300: #e2e8f0;
-    --color-gray-200: #f1f5f9;
-    --color-gray-100: #f8fafc;
+    --color-secondary: #8b5cf6;
+    --color-dark: #0a0e16;
+    --color-gray-900: #0f1419;
+    --color-gray-800: #161b22;
+    --color-gray-700: #1f2937;
+    --color-gray-600: #374151;
+    --color-gray-500: #6b7280;
+    --color-gray-400: #9ca3af;
+    --color-gray-300: #d1d5db;
+    --color-gray-200: #e5e7eb;
+    --color-gray-100: #f3f4f6;
     --color-white: #ffffff;
     
     /* Spacing */
@@ -42,18 +42,18 @@
     --radius-lg: 0.75rem;
     --radius-xl: 1rem;
     
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    /* Shadows - Enhanced for dark theme */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
 }
 
 body {
     font-family: var(--font-sans);
     line-height: 1.6;
-    color: var(--color-gray-900);
-    background-color: var(--color-white);
+    color: var(--color-gray-200);
+    background-color: var(--color-gray-900);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -68,9 +68,9 @@ body {
 .nav {
     position: sticky;
     top: 0;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(15, 20, 25, 0.95);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-gray-200);
+    border-bottom: 1px solid var(--color-gray-700);
     z-index: 100;
 }
 
@@ -87,7 +87,7 @@ body {
     gap: var(--spacing-sm);
     font-weight: 600;
     font-size: 1.25rem;
-    color: var(--color-dark);
+    color: var(--color-white);
     text-decoration: none;
 }
 
@@ -103,7 +103,7 @@ body {
 }
 
 .nav-links a {
-    color: var(--color-gray-700);
+    color: var(--color-gray-300);
     text-decoration: none;
     font-size: 0.9375rem;
     font-weight: 500;
@@ -142,23 +142,23 @@ body {
 }
 
 .btn-secondary {
-    background: var(--color-gray-900);
+    background: var(--color-gray-700);
     color: var(--color-white);
 }
 
 .btn-secondary:hover {
-    background: var(--color-gray-800);
+    background: var(--color-gray-600);
 }
 
 .btn-outline {
     background: transparent;
-    color: var(--color-gray-700);
-    border: 1px solid var(--color-gray-300);
+    color: var(--color-gray-300);
+    border: 1px solid var(--color-gray-600);
 }
 
 .btn-outline:hover {
-    background: var(--color-gray-100);
-    border-color: var(--color-gray-400);
+    background: var(--color-gray-800);
+    border-color: var(--color-gray-500);
 }
 
 .btn-primary.large,
@@ -176,13 +176,13 @@ body {
 .section-header h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--color-dark);
+    color: var(--color-white);
     margin-bottom: var(--spacing-md);
 }
 
 .section-header p {
     font-size: 1.125rem;
-    color: var(--color-gray-600);
+    color: var(--color-gray-400);
     max-width: 600px;
     margin: 0 auto;
 }
@@ -190,7 +190,7 @@ body {
 /* Features Section */
 .features {
     padding: var(--spacing-3xl) 0;
-    background: var(--color-gray-100);
+    background: var(--color-gray-800);
 }
 
 .features-grid {
@@ -200,16 +200,18 @@ body {
 }
 
 .feature-card {
-    background: var(--color-white);
+    background: var(--color-gray-900);
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     transition: all 0.3s;
+    border: 1px solid var(--color-gray-700);
 }
 
 .feature-card:hover {
     box-shadow: var(--shadow-lg);
     transform: translateY(-4px);
+    border-color: var(--color-primary);
 }
 
 .feature-icon {
@@ -220,12 +222,12 @@ body {
 .feature-card h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--color-dark);
+    color: var(--color-white);
     margin-bottom: var(--spacing-sm);
 }
 
 .feature-card p {
-    color: var(--color-gray-600);
+    color: var(--color-gray-400);
     line-height: 1.7;
 }
 
@@ -241,10 +243,10 @@ body {
 }
 
 .testimonial-card {
-    background: var(--color-white);
+    background: var(--color-gray-900);
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid var(--color-gray-700);
     transition: all 0.3s;
 }
 
@@ -255,7 +257,7 @@ body {
 
 .testimonial-content {
     font-size: 1.0625rem;
-    color: var(--color-gray-700);
+    color: var(--color-gray-300);
     line-height: 1.7;
     margin-bottom: var(--spacing-lg);
     font-style: italic;
@@ -271,7 +273,7 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--color-gray-200);
+    background: var(--color-gray-700);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,18 +282,18 @@ body {
 
 .author-name {
     font-weight: 600;
-    color: var(--color-dark);
+    color: var(--color-white);
 }
 
 .author-title {
     font-size: 0.875rem;
-    color: var(--color-gray-600);
+    color: var(--color-gray-400);
 }
 
 /* Pricing Section */
 .pricing {
     padding: var(--spacing-3xl) 0;
-    background: var(--color-gray-100);
+    background: var(--color-gray-800);
 }
 
 .pricing-grid {
@@ -303,10 +305,10 @@ body {
 }
 
 .pricing-card {
-    background: var(--color-white);
+    background: var(--color-gray-900);
     padding: var(--spacing-xl);
     border-radius: var(--radius-xl);
-    border: 2px solid var(--color-gray-200);
+    border: 2px solid var(--color-gray-700);
     position: relative;
     transition: all 0.3s;
 }
@@ -338,7 +340,7 @@ body {
 .pricing-tier {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-dark);
+    color: var(--color-white);
     margin-bottom: var(--spacing-md);
 }
 
@@ -349,19 +351,19 @@ body {
 .price-currency {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--color-gray-600);
+    color: var(--color-gray-400);
     vertical-align: top;
 }
 
 .price-amount {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--color-dark);
+    color: var(--color-white);
 }
 
 .price-period {
     font-size: 1rem;
-    color: var(--color-gray-600);
+    color: var(--color-gray-400);
 }
 
 .pricing-features {
@@ -371,7 +373,7 @@ body {
 
 .pricing-features li {
     padding: var(--spacing-sm) 0;
-    color: var(--color-gray-700);
+    color: var(--color-gray-300);
 }
 
 .btn-pricing {
@@ -381,15 +383,15 @@ body {
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    border: 2px solid var(--color-gray-300);
-    background: var(--color-white);
-    color: var(--color-gray-700);
+    border: 2px solid var(--color-gray-600);
+    background: var(--color-gray-800);
+    color: var(--color-gray-200);
     transition: all 0.2s;
 }
 
 .btn-pricing:hover {
-    background: var(--color-gray-100);
-    border-color: var(--color-gray-400);
+    background: var(--color-gray-700);
+    border-color: var(--color-gray-500);
 }
 
 .btn-pricing.primary {
@@ -406,9 +408,9 @@ body {
 /* Trust Section */
 .trust {
     padding: var(--spacing-2xl) 0;
-    background: var(--color-white);
-    border-top: 1px solid var(--color-gray-200);
-    border-bottom: 1px solid var(--color-gray-200);
+    background: var(--color-gray-900);
+    border-top: 1px solid var(--color-gray-700);
+    border-bottom: 1px solid var(--color-gray-700);
 }
 
 .trust-label {
@@ -417,7 +419,7 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--color-gray-600);
+    color: var(--color-gray-500);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -432,7 +434,7 @@ body {
 .trust-logo {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--color-gray-500);
+    color: var(--color-gray-600);
     opacity: 0.7;
 }
 
@@ -487,7 +489,7 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--color-gray-900);
+    background: var(--color-dark);
     color: var(--color-gray-400);
     padding: var(--spacing-3xl) 0 var(--spacing-xl) 0;
 }
@@ -537,9 +539,9 @@ body {
 
 .footer-bottom {
     padding-top: var(--spacing-xl);
-    border-top: 1px solid var(--color-gray-800);
+    border-top: 1px solid var(--color-gray-700);
     text-align: center;
-    color: var(--color-gray-600);
+    color: var(--color-gray-500);
     font-size: 0.875rem;
 }
 
