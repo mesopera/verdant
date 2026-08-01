@@ -261,6 +261,7 @@ impl GitHubClient {
     }
 
     /// Get contribution data (for analytics)
+    #[allow(dead_code)]
     pub async fn get_contribution_count(&self, days: u32) -> Result<u32> {
         // This is simplified - GitHub's GraphQL API is better for this
         // For now, return a mock value

@@ -91,6 +91,7 @@ impl Scheduler {
     }
 
     /// Check if it's time for next commit
+    #[allow(dead_code)]
     pub fn should_commit(&self, _last_commit_time: DateTime<Utc>, next_scheduled: DateTime<Utc>) -> bool {
         Utc::now() >= next_scheduled
     }

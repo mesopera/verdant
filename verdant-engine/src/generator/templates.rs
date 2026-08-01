@@ -1,6 +1,7 @@
 // Template constants for content generation
 // These are kept minimal as the actual content is generated in content.rs
 
+#[allow(dead_code)]
 pub const CORPORATE_TITLES: &[&str] = &[
     "Chief Feline Officer",
     "VP of Purr-formance Engineering",
@@ -12,6 +13,7 @@ pub const CORPORATE_TITLES: &[&str] = &[
     "VP of Strategic Nap Planning",
 ];
 
+#[allow(dead_code)]
 pub const COMPANY_NAMES: &[&str] = &[
     "Whiskers Corp",
     "Feline Dynamics Inc",
@@ -22,6 +24,7 @@ pub const COMPANY_NAMES: &[&str] = &[
     "Tabby Technologies",
 ];
 
+#[allow(dead_code)]
 pub const CORPORATE_JARGON: &[&str] = &[
     "synergize",
     "leverage",
