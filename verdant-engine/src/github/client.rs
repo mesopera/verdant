@@ -7,6 +7,7 @@ use tracing::{info, debug};
 
 pub struct GitHubClient {
     octocrab: Octocrab,
+    token: String,
     username: String,
     repo_name: String,
     local_repo_path: Option<PathBuf>,
@@ -16,12 +17,13 @@ impl GitHubClient {
     /// Create a new GitHub client
     pub fn new(token: String, username: String, repo_name: String) -> Result<Self> {
         let octocrab = Octocrab::builder()
-            .personal_token(token)
+            .personal_token(token.clone())
             .build()
             .context("Failed to create GitHub client")?;
         
         Ok(Self {
             octocrab,
+            token,
             username,
             repo_name,
             local_repo_path: None,
@@ -157,7 +159,13 @@ impl GitHubClient {
         refs: &[&str],
         remote: &'a mut git2::Remote,
     ) -> Result<git2::AnnotatedCommit<'a>> {
-        let cb = git2::RemoteCallbacks::new();
+        let mut cb = git2::RemoteCallbacks::new();
+        
+        // Add authentication for fetch
+        let token = self.token.clone();
+        cb.credentials(move |_url, _username_from_url, _allowed_types| {
+            git2::Cred::userpass_plaintext("x-access-token", &token)
+        });
         
         let mut fo = git2::FetchOptions::new();
         fo.remote_callbacks(cb);
@@ -232,7 +240,13 @@ impl GitHubClient {
         debug!("Pushing to remote...");
         
         let mut remote = repo.find_remote("origin")?;
-        let callbacks = git2::RemoteCallbacks::new();
+        
+        // Setup authentication with GitHub token
+        let mut callbacks = git2::RemoteCallbacks::new();
+        let token = self.token.clone();
+        callbacks.credentials(move |_url, _username_from_url, _allowed_types| {
+            git2::Cred::userpass_plaintext("x-access-token", &token)
+        });
         
         let mut push_options = git2::PushOptions::new();
         push_options.remote_callbacks(callbacks);
