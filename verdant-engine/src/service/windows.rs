@@ -1,13 +1,17 @@
+use std::error::Error;
 use std::ffi::OsString;
+use std::path::PathBuf;
 use std::time::Duration;
 use windows_service::{
     define_windows_service,
     service::{
-        ServiceControl, ServiceControlAccept, ServiceExitCode, ServiceState, ServiceStatus,
-        ServiceType,
+        ServiceAccess, ServiceControl, ServiceControlAccept, ServiceErrorControl, ServiceExitCode,
+        ServiceInfo, ServiceStartType, ServiceState, ServiceStatus, ServiceType,
     },
     service_control_handler::{self, ServiceControlHandlerResult},
-    service_dispatcher, Result as ServiceResult,
+    service_dispatcher,
+    service_manager::{ServiceManager, ServiceManagerAccess},
+    Result as ServiceResult,
 };
 use tracing::{info, error};
 
@@ -93,57 +97,69 @@ fn run_engine_loop() -> anyhow::Result<()> {
 }
 
 pub fn install_service() -> anyhow::Result<()> {
-    use std::process::Command;
-    
-    let exe_path = std::env::current_exe()?;
-    
     println!("Installing Verdant Engine as Windows service...");
-    
-    let output = Command::new("sc")
-        .args(&[
-            "create",
-            SERVICE_NAME,
-            &format!("binPath= \"{}\" service", exe_path.display()),
-            "start= auto",
-            "DisplayName= Verdant™ Contribution Optimization Engine",
-        ])
-        .output()?;
-    
-    if output.status.success() {
-        println!("✓ Service installed successfully");
-        println!("\nTo start the service, run:");
-        println!("  verdant-engine.exe start");
-        println!("\nOr use Windows Services Manager (services.msc)");
-        Ok(())
-    } else {
-        let error = String::from_utf8_lossy(&output.stderr);
-        anyhow::bail!("Failed to install service: {}", error)
-    }
+
+    let service_manager = ServiceManager::local_computer(
+        None::<&str>,
+        ServiceManagerAccess::CONNECT | ServiceManagerAccess::CREATE_SERVICE,
+    )
+    .map_err(|e| anyhow::anyhow!("Failed to open service manager: {}", e))?;
+
+    let exe_path = std::env::current_exe()?;
+    let binary_path = exe_path.display().to_string();
+
+    let service_info = ServiceInfo {
+        name: SERVICE_NAME.into(),
+        display_name: "Verdant™ Contribution Optimization Engine".into(),
+        service_type: SERVICE_TYPE,
+        start_type: ServiceStartType::AutoStart,
+        error_control: ServiceErrorControl::Normal,
+        executable_path: PathBuf::from(binary_path),
+        launch_arguments: vec!["service".into()],
+        dependencies: vec![],
+        account_name: None,
+        account_password: None,
+    };
+
+    service_manager
+        .create_service(&service_info, ServiceAccess::CHANGE_CONFIG)
+        .map_err(|e| {
+            let detail = e
+                .source()
+                .map(|s| format!(" (underlying: {})", s))
+                .unwrap_or_default();
+            anyhow::anyhow!("Failed to install service: {}{}", e, detail)
+        })?;
+
+    println!("✓ Service installed successfully");
+    println!("\nTo start the service, run:");
+    println!("  verdant-engine.exe start");
+    println!("\nOr use Windows Services Manager (services.msc)");
+    Ok(())
 }
 
 pub fn uninstall_service() -> anyhow::Result<()> {
-    use std::process::Command;
-    
     println!("Uninstalling Verdant Engine service...");
-    
+
+    let service_manager = ServiceManager::local_computer(None::<&str>, ServiceManagerAccess::CONNECT)
+        .map_err(|e| anyhow::anyhow!("Failed to open service manager: {}", e))?;
+
     // Stop the service first if it's running
-    let _ = Command::new("sc")
-        .args(&["stop", SERVICE_NAME])
-        .output();
-    
+    if let Ok(service) = service_manager.open_service(SERVICE_NAME, ServiceAccess::QUERY_STATUS) {
+        let _ = service.stop();
+    }
+
     // Wait a bit for the service to stop
     std::thread::sleep(Duration::from_secs(2));
-    
-    // Delete the service
-    let output = Command::new("sc")
-        .args(&["delete", SERVICE_NAME])
-        .output()?;
-    
-    if output.status.success() {
-        println!("✓ Service uninstalled successfully");
-        Ok(())
-    } else {
-        let error = String::from_utf8_lossy(&output.stderr);
-        anyhow::bail!("Failed to uninstall service: {}", error)
-    }
+
+    let service = service_manager
+        .open_service(SERVICE_NAME, ServiceAccess::DELETE)
+        .map_err(|e| anyhow::anyhow!("Failed to find service '{}': {}", SERVICE_NAME, e))?;
+
+    service
+        .delete()
+        .map_err(|e| anyhow::anyhow!("Failed to uninstall service: {}", e))?;
+
+    println!("✓ Service uninstalled successfully");
+    Ok(())
 }

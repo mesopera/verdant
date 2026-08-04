@@ -260,26 +260,29 @@ fn uninstall_service() -> Result<()> {
 fn start_service() -> Result<()> {
     #[cfg(windows)]
     {
-        use std::process::Command;
-        
+        use windows_service::service::ServiceAccess;
+        use windows_service::service_manager::{ServiceManager, ServiceManagerAccess};
+
         println!("Starting Verdant Engine service...");
-        
-        let output = Command::new("sc")
-            .args(&["start", "VerdantEngine"])
-            .output()?;
-        
-        if output.status.success() {
-            println!("✓ Service started successfully");
-            println!("\n💚 Your GitHub contribution graph optimization is now active!");
-            println!("View logs in Windows Event Viewer under 'Application'");
-        } else {
-            let error = String::from_utf8_lossy(&output.stderr);
-            eprintln!("❌ Failed to start service: {}", error);
-        }
-        
+
+        let manager = ServiceManager::local_computer(None::<&str>, ServiceManagerAccess::CONNECT)
+            .map_err(|e| anyhow::anyhow!("Failed to open service manager: {}", e))?;
+
+        let service = manager
+            .open_service("VerdantEngine", ServiceAccess::START)
+            .map_err(|e| anyhow::anyhow!("Failed to open service: {}", e))?;
+
+        service
+            .start(&[] as &[&str])
+            .map_err(|e| anyhow::anyhow!("Failed to start service: {}", e))?;
+
+        println!("✓ Service started successfully");
+        println!("\n💚 Your GitHub contribution graph optimization is now active!");
+        println!("View logs in Windows Event Viewer under 'Application'");
+
         Ok(())
     }
-    
+
     #[cfg(not(windows))]
     {
         eprintln!("❌ Windows service is only supported on Windows");
@@ -290,24 +293,27 @@ fn start_service() -> Result<()> {
 fn stop_service() -> Result<()> {
     #[cfg(windows)]
     {
-        use std::process::Command;
-        
+        use windows_service::service::ServiceAccess;
+        use windows_service::service_manager::{ServiceManager, ServiceManagerAccess};
+
         println!("Stopping Verdant Engine service...");
-        
-        let output = Command::new("sc")
-            .args(&["stop", "VerdantEngine"])
-            .output()?;
-        
-        if output.status.success() {
-            println!("✓ Service stopped successfully");
-        } else {
-            let error = String::from_utf8_lossy(&output.stderr);
-            eprintln!("❌ Failed to stop service: {}", error);
-        }
-        
+
+        let manager = ServiceManager::local_computer(None::<&str>, ServiceManagerAccess::CONNECT)
+            .map_err(|e| anyhow::anyhow!("Failed to open service manager: {}", e))?;
+
+        let service = manager
+            .open_service("VerdantEngine", ServiceAccess::STOP)
+            .map_err(|e| anyhow::anyhow!("Failed to open service: {}", e))?;
+
+        service
+            .stop()
+            .map_err(|e| anyhow::anyhow!("Failed to stop service: {}", e))?;
+
+        println!("✓ Service stopped successfully");
+
         Ok(())
     }
-    
+
     #[cfg(not(windows))]
     {
         eprintln!("❌ Windows service is only supported on Windows");
